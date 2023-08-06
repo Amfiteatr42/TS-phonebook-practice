@@ -20,7 +20,7 @@ export const StyledLink = styled(NavLink)`
   color: inherit;
   transition: all 210ms linear;
 
-  :hover {
+  &:hover {
     background-color: #414545;
     color: #fff;
   }

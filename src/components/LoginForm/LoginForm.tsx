@@ -4,32 +4,33 @@ import {
   FormWrap,
   Label,
   StyledField,
-} from 'components/RegistryForm/RegistryForm.styled';
-import { Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { login } from 'redux/authorization/auth-operations';
-import * as Yup from 'yup';
-import { LoginText } from './LoginForm.styled';
+} from "../RegistryForm/RegistryForm.styled";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { LoginText } from "./LoginForm.styled";
+import { useAppDispatch } from "../../hooks/redux";
+import { login } from "../../redux/authorization/auth-operations";
+import { NavLink } from "react-router-dom";
 
 export function LoginForm() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <FormWrap>
       <h2>Sign In with your account</h2>
       <Formik
-        initialValues={{ email: '', password: '', confirm: '' }}
+        initialValues={{ email: "", password: "", confirm: "" }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
-            .email('Please enter valid e-mail')
-            .required('E-mail is required'),
+            .email("Please enter valid e-mail")
+            .required("E-mail is required"),
           password: Yup.string()
-            .required('Password is forgotten. Why?')
-            .min(6, 'Password must be at least 6 characters long'),
+            .required("Password is forgotten. Why?")
+            .min(6, "Password must be at least 6 characters long"),
         })}
         onSubmit={({ email, password }, { resetForm }) => {
           dispatch(login({ email, password }));
+          console.log(email, password);
           resetForm();
         }}
       >
@@ -37,9 +38,9 @@ export function LoginForm() {
           values,
           errors,
           touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
+          // handleChange,
+          // handleBlur,
+          // handleSubmit,
           isSubmitting,
         }) => (
           <Form>
@@ -71,8 +72,8 @@ export function LoginForm() {
       </Formik>
 
       <LoginText>
-        Don't have an account yet?{' '}
-        <NavLink to={'/registry'} style={{ color: 'black', fontWeight: '600' }}>
+        Don't have an account yet?{" "}
+        <NavLink to={"/registry"} style={{ color: "black", fontWeight: "600" }}>
           Click here!
         </NavLink>
       </LoginText>

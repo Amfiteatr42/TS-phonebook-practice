@@ -1,37 +1,36 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
-import { getContactItems } from 'redux/contacts/selectors';
-import { Form, Label, Input, Btn } from './AddContactForm.styled';
+import { useState } from "react";
+import { addContact } from "../../redux/contacts/operations";
+import { getContactItems } from "../../redux/contacts/selectors";
+import { Form, Label, Input, Btn } from "./AddContactForm.styled";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 
 export function AddContactForm() {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contactItems = useSelector(getContactItems);
-  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const contactItems = useAppSelector(getContactItems);
+  const dispatch = useAppDispatch();
 
-  function onChange(e) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
 
     switch (name) {
-      case 'name':
+      case "name":
         setName(value);
         break;
-      case 'number':
+      case "number":
         setNumber(value);
         break;
-
       default:
         break;
     }
   }
 
-  function onSubmit(e) {
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const isInContacts = contactItems.find(contact => contact.name === name);
+    const isInContacts = contactItems.find((contact) => contact.name === name);
     if (isInContacts) {
       alert(
-        'What are you doing, man? You already have this dude in your Phonebook!'
+        "What are you doing, man? You already have this dude in your Phonebook!"
       );
       return;
     }
@@ -40,8 +39,8 @@ export function AddContactForm() {
   }
 
   function reset() {
-    setName('');
-    setNumber('');
+    setName("");
+    setNumber("");
   }
 
   return (

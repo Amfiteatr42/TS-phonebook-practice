@@ -1,14 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from 'redux/authorization/auth-operations';
-import { selectUserName } from 'redux/authorization/auth-selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { logout } from 'redux/authorization/auth-operations';
+// import { selectUserName } from 'redux/authorization/auth-selectors';
 import { Button, LogoutIcon, UserBox } from './UserMenu.styled';
 
 export function UserMenu() {
-  const userName = useSelector(selectUserName);
-  const dispatch = useDispatch();
+  // const userName = useSelector(selectUserName);
+ const userName:string = 'vasya'
+  // const dispatch = useDispatch();
 
   function onLogout() {
-    dispatch(logout());
+    // dispatch(logout());
   }
 
   return (

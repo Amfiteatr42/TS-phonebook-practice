@@ -30,7 +30,7 @@ export const WelcomeLink = styled(NavLink)`
   border: 1px solid #414545;
   transition: all 210ms linear;
 
-  :hover {
+  &:hover {
     background-color: #414545;
     color: #fff;
   }

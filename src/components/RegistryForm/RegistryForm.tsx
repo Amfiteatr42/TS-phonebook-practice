@@ -1,39 +1,54 @@
-import { Title } from 'components/Welcome/Welcome.styled';
-import { Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { registry } from 'redux/authorization/auth-operations';
-import * as Yup from 'yup';
+import { Title } from "../Welcome/Welcome.styled";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 import {
   FormWrap,
   Button,
   StyledField,
   Label,
   ErrorMsg,
-} from './RegistryForm.styled';
+} from "./RegistryForm.styled";
+import { useAppDispatch } from "../../hooks/redux";
+import { registry } from "../../redux/authorization/auth-operations";
+
+interface IInitialValues {
+  name: string;
+  email: string;
+  password: string;
+  confirm: string;
+}
+
+const initialValues: IInitialValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirm: "",
+};
 
 export function RegistryForm() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <FormWrap>
       <Title>Registry Form</Title>
       <Formik
-        initialValues={{ name: '', email: '', password: '', confirm: '' }}
+        initialValues={initialValues}
         validationSchema={Yup.object().shape({
-          name: Yup.string().required('*Required'),
-          email: Yup.string().email().required('*Required'),
+          name: Yup.string().required("*Required"),
+          email: Yup.string().email().required("*Required"),
           password: Yup.string()
-            .required('*Required')
-            .min(7, 'Password must be at least 7 characters long'),
+            .required("*Required")
+            .min(7, "Password must be at least 7 characters long"),
           confirm: Yup.string()
-            .required('*Required')
+            .required("*Required")
             .oneOf(
-              [Yup.ref('password'), null],
-              'Your passwords are different, try harder!'
+              [Yup.ref("password"), null],
+              "Your passwords are different, try harder!"
             ),
         })}
         onSubmit={({ name, email, password }, { resetForm }) => {
           dispatch(registry({ name, email, password }));
+          console.log(name, email, password);
           resetForm();
         }}
       >
@@ -41,8 +56,8 @@ export function RegistryForm() {
           values,
           errors,
           touched,
-          handleChange,
-          handleBlur,
+          // handleChange,
+          // handleBlur,
           handleSubmit,
           isSubmitting,
         }) => (

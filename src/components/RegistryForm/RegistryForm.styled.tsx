@@ -1,5 +1,9 @@
-import { ErrorMessage, Field } from 'formik';
-import styled from 'styled-components';
+import { ErrorMessage, Field } from "formik";
+import styled from "styled-components";
+
+interface LabelProps {
+  readonly error: string | false | undefined;
+}
 
 export const FormWrap = styled.div`
   margin: 0 auto;
@@ -9,7 +13,7 @@ export const FormWrap = styled.div`
   box-shadow: 0px 0.8px 0.8px hsl(0deg 0% 0% / 0.28),
     0px 2.4px 2.3px 1.2px hsl(0deg 0% 0% / 0.15),
     0px 6.9px 6.7px 1.3px hsl(0deg 0% 0% / 0.13),
-    0.1px 18.4px 17.9px -3.5px hsl(0deg 0% 0% / 0.1); ;
+    0.1px 18.4px 17.9px -3.5px hsl(0deg 0% 0% / 0.1);
 `;
 export const Button = styled.button`
   display: block;
@@ -44,11 +48,12 @@ export const StyledField = styled(Field)`
     background-color: #e6e6e6;
   }
 `;
-export const Label = styled.label`
+
+export const Label = styled.label<LabelProps>`
   display: block;
   margin: 5px 4px;
   margin-top: 15px;
-  color: ${props => (props.error ? 'red' : 'inherit')};
+  color: ${(props) => (props.error ? "red" : "inherit")};
 `;
 export const ErrorMsg = styled(ErrorMessage)`
   color: red;

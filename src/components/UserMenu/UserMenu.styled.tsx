@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { RiLogoutBoxRLine } from 'react-icons/ri';
+import styled from "styled-components";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 export const UserBox = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
 
-  :hover {
+  &:hover {
     background-color: #414545;
     color: #fff;
   }

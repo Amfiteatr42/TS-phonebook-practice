@@ -1,5 +1,5 @@
-import { Button } from 'components/RegistryForm/RegistryForm.styled';
-import styled from 'styled-components';
+import { Button } from "../RegistryForm/RegistryForm.styled";
+import styled from "styled-components";
 
 export const Form = styled.form`
   width: 315px;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Input } from 'components/AddContactForm/AddContactForm.styled';
+import styled from "styled-components";
+import { Input } from "../../components/AddContactForm/AddContactForm.styled";
 
 export const Label = styled.label`
   padding: 10px;
